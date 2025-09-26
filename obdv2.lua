@@ -823,7 +823,7 @@ local function bountycaresp()
                 bb.Parent = fl
             end
         end
-    endw
+    end
 
     runsrv.Heartbeat:Connect(function()
         for _, v in ipairs(vfs:GetChildren()) do
@@ -1304,5 +1304,6 @@ local function applyColor()
     vehicleespbutton.BackgroundColor3 = newColor
     safeespbutton.BackgroundColor3 = newColor
 end
+
 
 applyColorButton.MouseButton1Click:Connect(applyColor)
