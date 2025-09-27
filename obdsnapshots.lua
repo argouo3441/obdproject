@@ -1,5 +1,5 @@
 print("injection is successful ✅")
-warn("OBDeleven version 25w39b")
+warn("OBDeleven version 25w39c")
 
 warn("Changelogs are migrated to github")
 
@@ -7,7 +7,7 @@ warn("Changelogs are migrated to github")
  YOU WILL BE BANNED OTHERWISE FOR CREATING NEW GUIS]]
 local coreGui = game:GetService("CoreGui").RobloxGui
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "478c7ca006c678a1408e3647fd2fe46b99d06e382d83946fa1a34e5b0afd6d2f"
+screenGui.Name = "7b117de4599b0c2454a301fdf1e83e2c1939114799a1f40cfba7c6880d867db0"
 screenGui.Parent = coreGui
 --[[DO NOT MODIFY ABOVE]]
 ----------------------------------------------------------------------------------------------------------
@@ -612,7 +612,7 @@ DisbaleDmgButton.Font = Enum.Font.Ubuntu
 local HipHeightLabel = Instance.new("TextBox")
 HipHeightLabel.Parent = playerfeatures
 HipHeightLabel.Size = UDim2.new(0.2, 0, 0.07, 0)
-HipHeightLabel.Position = UDim2.new(0.07, 0, 0.025, 0)
+HipHeightLabel.Position = UDim2.new(0.07, 0, 0.108, 0)
 HipHeightLabel.Text = "Disable DamageHandler"
 HipHeightLabel.TextScaled = true
 HipHeightLabel.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
@@ -623,7 +623,7 @@ HipHeightLabel.Font = Enum.Font.Ubuntu
 local Hipheightextbox = Instance.new("TextBox")
 Hipheightextbox.Parent = playerfeatures
 Hipheightextbox.Size = UDim2.new(0.2, 0, 0.07, 0)
-Hipheightextbox.Position = UDim2.new(0.27, 0, 0.025, 0)
+Hipheightextbox.Position = UDim2.new(0.27, 0, 0.108, 0)
 Hipheightextbox.PlaceholderText = "Enter Value 0-999"
 Hipheightextbox.Text = ""
 Hipheightextbox.TextScaled = true
@@ -636,7 +636,7 @@ Hipheightextbox.ClearTextOnFocus = true
 local HipHeightButton = Instance.new("TextButton")
 HipHeightButton.Parent = playerfeatures
 HipHeightButton.Size = UDim2.new(0.2, 0, 0.07, 0)
-HipHeightButton.Position = UDim2.new(0.47, 0, 0.025, 0)
+HipHeightButton.Position = UDim2.new(0.47, 0, 0.108, 0)
 HipHeightButton.Text = "Apply"
 HipHeightButton.TextScaled = true
 HipHeightButton.BackgroundColor3 = Color3.fromRGB(30, 144, 255)
@@ -1098,7 +1098,7 @@ end
 
 local plr = game.Players.LocalPlayer
 
-local tb = script.Parent:WaitForChild("Hipheightextbox")
+local tb = Hipheightextbox
 
 local function applyhh()
     local char = plr.Character or plr.CharacterAdded:Wait()
@@ -1379,8 +1379,7 @@ local function applyColor()
     atmespbutton.BackgroundColor3 = newColor
     vehicleespbutton.BackgroundColor3 = newColor
     safeespbutton.BackgroundColor3 = newColor
-	HipHeightButton.BackgroundColor3 = newColor
+    HipHeightButton.BackgroundColor3 = newColor
 end
 
 applyColorButton.MouseButton1Click:Connect(applyColor)
-
