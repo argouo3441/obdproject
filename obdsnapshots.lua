@@ -1107,7 +1107,7 @@ local function applyhh()
 
     local input = tonumber(tb.Text)
     if input then
-        humanoid.Hipheight = math.clamp(input, 0, 999)
+        humanoid.HipHeight = math.clamp(input, 0, 999)
     else
         tb.Text = "Invaid input"
         wait(2)
@@ -1383,3 +1383,4 @@ local function applyColor()
 end
 
 applyColorButton.MouseButton1Click:Connect(applyColor)
+
