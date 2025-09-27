@@ -609,11 +609,11 @@ DisbaleDmgButton.BorderSizePixel = 0
 DisbaleDmgButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 DisbaleDmgButton.Font = Enum.Font.Ubuntu
 
-local HipHeightLabel = Instance.new("TextBox")
+local HipHeightLabel = Instance.new("TextLabel")
 HipHeightLabel.Parent = playerfeatures
 HipHeightLabel.Size = UDim2.new(0.2, 0, 0.07, 0)
 HipHeightLabel.Position = UDim2.new(0.07, 0, 0.108, 0)
-HipHeightLabel.Text = "Disable DamageHandler"
+HipHeightLabel.Text = "Hipheight Value"
 HipHeightLabel.TextScaled = true
 HipHeightLabel.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
 HipHeightLabel.BorderSizePixel = 0
@@ -1109,7 +1109,7 @@ local function applyhh()
     if input then
         humanoid.HipHeight = math.clamp(input, 0, 999)
     else
-        tb.Text = "Invaid input"
+        tb.Text = "Invalid input"
         wait(2)
         tb.Text = ""
     end
@@ -1383,4 +1383,5 @@ local function applyColor()
 end
 
 applyColorButton.MouseButton1Click:Connect(applyColor)
+
 
