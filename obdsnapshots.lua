@@ -1102,7 +1102,7 @@ local tb = Hipheightextbox
 
 local function applyhh()
     local char = plr.Character or plr.CharacterAdded:Wait()
-    local humanoid = char.FindFirstChildOfClass("Humanoid")
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
     if not humanoid then return end
 
     local input = tonumber(tb.Text)
