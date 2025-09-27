@@ -1,5 +1,5 @@
 print("injection is successful ✅")
-warn("OBDeleven version 25w39a")
+warn("OBDeleven version 25w39b")
 
 warn("Changelogs are migrated to github")
 
@@ -7,7 +7,7 @@ warn("Changelogs are migrated to github")
  YOU WILL BE BANNED OTHERWISE FOR CREATING NEW GUIS]]
 local coreGui = game:GetService("CoreGui").RobloxGui
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "a83202969d261c260d2b877506692d6943c972197e9ef3fa82567dd66eeab7d2"
+screenGui.Name = "478c7ca006c678a1408e3647fd2fe46b99d06e382d83946fa1a34e5b0afd6d2f"
 screenGui.Parent = coreGui
 --[[DO NOT MODIFY ABOVE]]
 ----------------------------------------------------------------------------------------------------------
@@ -1235,7 +1235,7 @@ end)
 
 HipHeightButton.MouseButton1Click:Connect(function()
     applyhh()
-)
+end)
 ---- func buttons ^
 ---- menu buttons v
 
@@ -1379,6 +1379,8 @@ local function applyColor()
     atmespbutton.BackgroundColor3 = newColor
     vehicleespbutton.BackgroundColor3 = newColor
     safeespbutton.BackgroundColor3 = newColor
+	HipHeightButton.BackgroundColor3 = newColor
 end
 
 applyColorButton.MouseButton1Click:Connect(applyColor)
+
