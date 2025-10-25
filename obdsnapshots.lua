@@ -1,5 +1,5 @@
 print("injection is successful ✅")
-warn("OBDeleven version 25w39c")
+warn("OBDeleven version 25w43a")
 
 warn("Changelogs are migrated to github")
 
@@ -7,7 +7,7 @@ warn("Changelogs are migrated to github")
  YOU WILL BE BANNED OTHERWISE FOR CREATING NEW GUIS]]
 local coreGui = game:GetService("CoreGui").RobloxGui
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "7b117de4599b0c2454a301fdf1e83e2c1939114799a1f40cfba7c6880d867db0"
+screenGui.Name = "5f5438c54a0d7844f5b43e3967c2b2fc277e9ba4a83a3a12029a813db95758ec"
 screenGui.Parent = coreGui
 --[[DO NOT MODIFY ABOVE]]
 ----------------------------------------------------------------------------------------------------------
@@ -896,7 +896,7 @@ for _, obj in ipairs(workspace.ATMs:GetChildren()) do
     end
 end
 
--- player esp
+-- player esp func
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local CoreGui = game:GetService("CoreGui")
@@ -918,6 +918,7 @@ local function round(num, digits)
     return math.floor(num * mult + 0.5) / mult
 end
 
+-- create box around body part
 local function createBoundingBox(part, color)
     local box = Instance.new("BoxHandleAdornment")
     box.Adornee = part
@@ -930,75 +931,80 @@ local function createBoundingBox(part, color)
     return box
 end
 
+-- get team color or fallback to white
 local function getTeamColor(player)
-    return player.TeamColor and player.TeamColor.Color or Color3.new(1, 1, 1) -- fallback to white
+    return player.TeamColor and player.TeamColor.Color or Color3.new(1, 1, 1)
 end
 
-local function attachESP(plyr)
-    local function onCharacterAdded(char)
-        local head = char:WaitForChild("Head", 5)
-        if not head then return end
+-- apply esp to char
+local function applyESPToCharacter(plyr, char)
+    local head = char:FindFirstChild("Head")
+    if not head then return end
 
-        -- BillboardGui setup
-        local BillboardGui = Instance.new("BillboardGui")
-        local TextLabel = Instance.new("TextLabel")
+    -- BillboardGui setup
+    local BillboardGui = Instance.new("BillboardGui")
+    local TextLabel = Instance.new("TextLabel")
 
-        BillboardGui.Adornee = head
-        BillboardGui.Name = plyr.Name .. "_Info"
-        BillboardGui.Parent = ESPholder
-        BillboardGui.Size = UDim2.new(0, 150, 0, 50)
-        BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
-        BillboardGui.AlwaysOnTop = true
+    BillboardGui.Adornee = head
+    BillboardGui.Name = plyr.Name .. "_Info"
+    BillboardGui.Parent = ESPholder
+    BillboardGui.Size = UDim2.new(0, 150, 0, 50)
+    BillboardGui.StudsOffset = Vector3.new(0, 4, 0)
+    BillboardGui.AlwaysOnTop = true
 
-        TextLabel.Parent = BillboardGui
-        TextLabel.BackgroundTransparency = 1
-        TextLabel.Size = UDim2.new(1, 0, 1, 0)
-        TextLabel.Font = Enum.Font.SourceSansBold
-        TextLabel.TextSize = 14
-        TextLabel.TextColor3 = Color3.new(1, 1, 1)
-        TextLabel.TextStrokeTransparency = 0.5
-        TextLabel.TextYAlignment = Enum.TextYAlignment.Center
-        TextLabel.TextXAlignment = Enum.TextXAlignment.Center
+    TextLabel.Parent = BillboardGui
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Size = UDim2.new(1, 0, 1, 0)
+    TextLabel.Font = Enum.Font.SourceSansBold
+    TextLabel.TextSize = 14
+    TextLabel.TextColor3 = Color3.new(1, 1, 1)
+    TextLabel.TextStrokeTransparency = 0.5
+    TextLabel.TextYAlignment = Enum.TextYAlignment.Center
+    TextLabel.TextXAlignment = Enum.TextXAlignment.Center
 
-        -- body parts
-        local bodyParts = {
-            "Head", "Torso", "UpperTorso", "LowerTorso",
-            "LeftArm", "RightArm", "LeftLeg", "RightLeg",
-            "LeftUpperArm", "RightUpperArm", "LeftLowerArm", "RightLowerArm",
-            "LeftUpperLeg", "RightUpperLeg", "LeftLowerLeg", "RightLowerLeg"
-        }
+    -- body parts
+    local bodyParts = {
+        "Head", "Torso", "UpperTorso", "LowerTorso",
+        "LeftArm", "RightArm", "LeftLeg", "RightLeg",
+        "LeftUpperArm", "RightUpperArm", "LeftLowerArm", "RightLowerArm",
+        "LeftUpperLeg", "RightUpperLeg", "LeftLowerLeg", "RightLowerLeg"
+    }
 
-        local teamColor = getTeamColor(plyr)
+    local teamColor = getTeamColor(plyr)
 
-        -- body parts
-        for _, partName in ipairs(bodyParts) do
-            local part = char:FindFirstChild(partName)
-            if part and part:IsA("BasePart") then
-                createBoundingBox(part, teamColor)
-            end
+    -- create box for bodyparts
+    for _, partName in ipairs(bodyParts) do
+        local part = char:FindFirstChild(partName)
+        if part and part:IsA("BasePart") then
+            createBoundingBox(part, teamColor)
         end
-
-        -- update label text
-        local conn = RunService.RenderStepped:Connect(function()
-            local humanoid = char:FindFirstChildOfClass("Humanoid")
-            local root = getRoot(char)
-            local localRoot = getRoot(Players.LocalPlayer.Character)
-
-            if humanoid and root and localRoot then
-                local dist = math.floor((localRoot.Position - root.Position).Magnitude)
-                local health = round(humanoid.Health, 1)
-                TextLabel.Text = string.format("Name: %s | Health: %.1f | Dist: %d", plyr.Name, health, dist)
-            end
-        end)
-
-        table.insert(connections, conn)
     end
+
+    -- update label text
+    local conn = RunService.RenderStepped:Connect(function()
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+        local root = getRoot(char)
+        local localRoot = getRoot(Players.LocalPlayer.Character)
+
+        if humanoid and root and localRoot then
+            local dist = math.floor((localRoot.Position - root.Position).Magnitude)
+            local health = round(humanoid.Health, 1)
+            TextLabel.Text = string.format("Name: %s | Health: %.1f | Dist: %d", plyr.Name, health, dist)
+        end
+    end)
+
+    table.insert(connections, conn)
+end
+
+-- attach esp logic
+local function attachESP(plyr)
+    plyr.CharacterAdded:Connect(function(char)
+        applyESPToCharacter(plyr, char)
+    end)
 
     if plyr.Character then
-        onCharacterAdded(plyr.Character)
+        applyESPToCharacter(plyr, plyr.Character)
     end
-
-    plyr.CharacterAdded:Connect(onCharacterAdded)
 end
 
 function enableESP()
@@ -1027,7 +1033,6 @@ function disableESP()
     end
     table.clear(connections)
 end
-
 
 -- safe esp
 local function safeesp()
@@ -1114,20 +1119,6 @@ local function applyhh()
         tb.Text = ""
     end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ------ func above
 ------------ vehicles below
@@ -1383,5 +1374,4 @@ local function applyColor()
 end
 
 applyColorButton.MouseButton1Click:Connect(applyColor)
-
 
