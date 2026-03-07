@@ -1,14 +1,12 @@
-print("injection is successful ✅")
-warn("OBDeleven version 25w43a")
-
-warn("Changelogs are migrated to github")
-
+-- version 26w10a
+warn("if you encounter the error :6: attempt to index nil with waitforchild then just get rid of the robloxgui and parent the screengui to coregui instead")
 --[[DO NOT MODIFY THIS PART, THIS IS FOR THE COREGUI.ROBLOXGUI
  YOU WILL BE BANNED OTHERWISE FOR CREATING NEW GUIS]]
-local coreGui = game:GetService("CoreGui").RobloxGui
+local coreGui = game:GetService("CoreGui")
+local robloxGui = coreGui:WaitForChild("RobloxGui")
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "5f5438c54a0d7844f5b43e3967c2b2fc277e9ba4a83a3a12029a813db95758ec"
-screenGui.Parent = coreGui
+screenGui.Name = "bc1d60cd33b1bd7c37855a37d631785435c6db0c5244ddb8ea8c214ecd05b424"
+screenGui.Parent = robloxGui
 --[[DO NOT MODIFY ABOVE]]
 ----------------------------------------------------------------------------------------------------------
 
@@ -28,11 +26,11 @@ local frame = mainFrame
 local fVis = true
 
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
-    if gameProcessed then return end
-    if input.KeyCode == Enum.KeyCode.RightShift then
-        fVis = not fVis
-        frame.Visible = fVis
-    end
+	if gameProcessed then return end
+	if input.KeyCode == Enum.KeyCode.RightShift then
+		fVis = not fVis
+		frame.Visible = fVis
+	end
 end)
 
 -- drag state
@@ -737,7 +735,7 @@ local function carflings()
 	local humanoid = plr.Character:FindFirstChildWhichIsA("Humanoid")
 	if humanoid then
 		local brodied
-		 brodied = humanoid.Died:Connect(function()
+		brodied = humanoid.Died:Connect(function()
 			coroutine.close(carflinges)
 			carflinges = nil
 			brodied:Disconnect()
@@ -774,19 +772,19 @@ end
 -- ez lockpick
 local function ezlockpick()
 	local lockpicktext = game:GetService("Players").LocalPlayer.PlayerGui.GameMenus.Lockpick.InfoText
-    local redLine = game:GetService("Players").LocalPlayer.PlayerGui.GameMenus.Lockpick.Pick.RedLine
-		    redLine.Size = UDim2.new(1, 0, 1, 0)
-			redLine.BackgroundTransparency = 1
-		lockpicktext.Text = "OBD ON TOP, Click until you successfully break into the house."
-	end
+	local redLine = game:GetService("Players").LocalPlayer.PlayerGui.GameMenus.Lockpick.Pick.RedLine
+	redLine.Size = UDim2.new(1, 0, 1, 0)
+	redLine.BackgroundTransparency = 1
+	lockpicktext.Text = "OBD ON TOP, Click until you successfully break into the house."
+end
 
 -- ez crowbar
 local function ezcrowbar()
 	local crowbartext = game:GetService("Players").LocalPlayer.PlayerGui.GameMenus.Crowbar.Main.GradientFrame.TextLabel
 	local crowbar = game:GetService("Players").LocalPlayer.PlayerGui.GameMenus.Crowbar.Main.Game.Target
-		crowbar.Size = UDim2.new(3, 0, 0.96, 0)
-		crowbartext.Text = "OBD ON TOP, Click until you successfully break into the car."
-	end
+	crowbar.Size = UDim2.new(3, 0, 0.96, 0)
+	crowbartext.Text = "OBD ON TOP, Click until you successfully break into the car."
+end
 
 
 
@@ -806,94 +804,94 @@ local Lighting = game:GetService("Lighting")
 local brightLoop -- Store the connection outside the function
 
 local function fullbrighted()
-    if brightLoop then
-        brightLoop:Disconnect()
-        brightLoop = nil
-    end
+	if brightLoop then
+		brightLoop:Disconnect()
+		brightLoop = nil
+	end
 
-    local function brightFunc()
-        Lighting.Brightness = 2
-        Lighting.ClockTime = 14
-        Lighting.FogEnd = 100000
-        Lighting.GlobalShadows = false
-        Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
-    end
+	local function brightFunc()
+		Lighting.Brightness = 2
+		Lighting.ClockTime = 14
+		Lighting.FogEnd = 100000
+		Lighting.GlobalShadows = false
+		Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+	end
 
-    brightLoop = runsrv.RenderStepped:Connect(brightFunc)
+	brightLoop = runsrv.RenderStepped:Connect(brightFunc)
 end
 
 
 ---------------- toilet
 
 local function findDesc(part, name)
-    for _, d in ipairs(part:GetDescendants()) do
-        if d.Name == name then
-            return d
-        end
-    end
-    return nil
+	for _, d in ipairs(part:GetDescendants()) do
+		if d.Name == name then
+			return d
+		end
+	end
+	return nil
 end
 
 -------------------
 -- car bounty esp
 local function bountycaresp()
-    local runsrv = game:GetService("RunService")
-    local vfs = workspace:WaitForChild("BountyVehicles"):WaitForChild("Vehicles")
+	local runsrv = game:GetService("RunService")
+	local vfs = workspace:WaitForChild("BountyVehicles"):WaitForChild("Vehicles")
 
-    local function applyToVehicle(v)
-        if v:IsA("Model") and not v:FindFirstChildOfClass("Highlight") then
-            local h = Instance.new("Highlight")
-            h.Adornee = v
-            h.Parent = v
-            h.FillColor = Color3.fromRGB(0, 255, 255)
-            h.FillTransparency = 0.8
+	local function applyToVehicle(v)
+		if v:IsA("Model") and not v:FindFirstChildOfClass("Highlight") then
+			local h = Instance.new("Highlight")
+			h.Adornee = v
+			h.Parent = v
+			h.FillColor = Color3.fromRGB(0, 255, 255)
+			h.FillTransparency = 0.8
 
-            local fl = findDesc(v, "FL")
-            if fl and fl:IsA("BasePart") and not fl:FindFirstChild("ModelNameDisplay") then
-                local bb = Instance.new("BillboardGui")
-                bb.Name = "ModelNameDisplay"
-                bb.Adornee = fl
-                bb.Size = UDim2.new(0, 200, 0, 25)
-                bb.StudsOffset = Vector3.new(0, 2.5, 0)
-                bb.AlwaysOnTop = true
-                bb.Parent = fl
-            end
-        end
-    end
+			local fl = findDesc(v, "FL")
+			if fl and fl:IsA("BasePart") and not fl:FindFirstChild("ModelNameDisplay") then
+				local bb = Instance.new("BillboardGui")
+				bb.Name = "ModelNameDisplay"
+				bb.Adornee = fl
+				bb.Size = UDim2.new(0, 200, 0, 25)
+				bb.StudsOffset = Vector3.new(0, 2.5, 0)
+				bb.AlwaysOnTop = true
+				bb.Parent = fl
+			end
+		end
+	end
 
-    runsrv.Heartbeat:Connect(function()
-        for _, v in ipairs(vfs:GetChildren()) do
-            applyToVehicle(v)
-        end
-    end)
+	runsrv.Heartbeat:Connect(function()
+		for _, v in ipairs(vfs:GetChildren()) do
+			applyToVehicle(v)
+		end
+	end)
 end
 
 -- atm esp
 local function atmmachineesp()
-for _, obj in ipairs(workspace.ATMs:GetChildren()) do
-    if obj:IsA("Model") and obj.Name == "ATM" then
-        -- BillboardGui
-        local billboard = Instance.new("BillboardGui")
-        billboard.Name = "ATMLabel"
-        billboard.Size = UDim2.new(0, 200, 0, 50)
-        billboard.StudsOffset = Vector3.new(0, 3, 0)
-        billboard.AlwaysOnTop = true
-        billboard.Parent = obj:FindFirstChildWhichIsA("BasePart") or obj.PrimaryPart
+	for _, obj in ipairs(workspace.ATMs:GetChildren()) do
+		if obj:IsA("Model") and obj.Name == "ATM" then
+			-- BillboardGui
+			local billboard = Instance.new("BillboardGui")
+			billboard.Name = "ATMLabel"
+			billboard.Size = UDim2.new(0, 200, 0, 50)
+			billboard.StudsOffset = Vector3.new(0, 3, 0)
+			billboard.AlwaysOnTop = true
+			billboard.Parent = obj:FindFirstChildWhichIsA("BasePart") or obj.PrimaryPart
 
-        -- TextLabel
-        local label = Instance.new("TextLabel")
-        label.Text = "ATM"
-        label.Font = Enum.Font.Ubuntu
-        label.TextScaled = false
-        label.TextSize = 14
-        label.TextColor3 = Color3.new(1, 1, 1)
-        label.BackgroundTransparency = 1
-        label.Size = UDim2.new(1, 0, 1, 0)
-        label.TextStrokeTransparency = 0
-        label.TextStrokeColor3 = Color3.new(0, 0, 0)
-        label.Parent = billboard
-        end
-    end
+			-- TextLabel
+			local label = Instance.new("TextLabel")
+			label.Text = "ATM"
+			label.Font = Enum.Font.Ubuntu
+			label.TextScaled = false
+			label.TextSize = 14
+			label.TextColor3 = Color3.new(1, 1, 1)
+			label.BackgroundTransparency = 1
+			label.Size = UDim2.new(1, 0, 1, 0)
+			label.TextStrokeTransparency = 0
+			label.TextStrokeColor3 = Color3.new(0, 0, 0)
+			label.Parent = billboard
+		end
+	end
 end
 
 -- player esp func
@@ -909,194 +907,194 @@ local connections = {}
 
 -- get hrp
 local function getRoot(char)
-    return char:FindFirstChild("HumanoidRootPart")
+	return char:FindFirstChild("HumanoidRootPart")
 end
 
 -- round to closest decimal point
 local function round(num, digits)
-    local mult = 10 ^ digits
-    return math.floor(num * mult + 0.5) / mult
+	local mult = 10 ^ digits
+	return math.floor(num * mult + 0.5) / mult
 end
 
 -- create box around body part
 local function createBoundingBox(part, color)
-    local box = Instance.new("BoxHandleAdornment")
-    box.Adornee = part
-    box.Size = part.Size
-    box.AlwaysOnTop = true
-    box.ZIndex = 0
-    box.Transparency = 0.5
-    box.Color3 = color or Color3.new(0, 1, 0)
-    box.Parent = ESPholder
-    return box
+	local box = Instance.new("BoxHandleAdornment")
+	box.Adornee = part
+	box.Size = part.Size
+	box.AlwaysOnTop = true
+	box.ZIndex = 0
+	box.Transparency = 0.5
+	box.Color3 = color or Color3.new(0, 1, 0)
+	box.Parent = ESPholder
+	return box
 end
 
 -- get team color or fallback to white
 local function getTeamColor(player)
-    return player.TeamColor and player.TeamColor.Color or Color3.new(1, 1, 1)
+	return player.TeamColor and player.TeamColor.Color or Color3.new(1, 1, 1)
 end
 
 -- apply esp to char
 local function applyESPToCharacter(plyr, char)
-    local head = char:FindFirstChild("Head")
-    if not head then return end
+	local head = char:FindFirstChild("Head")
+	if not head then return end
 
-    -- BillboardGui setup
-    local BillboardGui = Instance.new("BillboardGui")
-    local TextLabel = Instance.new("TextLabel")
+	-- BillboardGui setup
+	local BillboardGui = Instance.new("BillboardGui")
+	local TextLabel = Instance.new("TextLabel")
 
-    BillboardGui.Adornee = head
-    BillboardGui.Name = plyr.Name .. "_Info"
-    BillboardGui.Parent = ESPholder
-    BillboardGui.Size = UDim2.new(0, 150, 0, 50)
-    BillboardGui.StudsOffset = Vector3.new(0, 4, 0)
-    BillboardGui.AlwaysOnTop = true
+	BillboardGui.Adornee = head
+	BillboardGui.Name = plyr.Name .. "_Info"
+	BillboardGui.Parent = ESPholder
+	BillboardGui.Size = UDim2.new(0, 150, 0, 50)
+	BillboardGui.StudsOffset = Vector3.new(0, 4, 0)
+	BillboardGui.AlwaysOnTop = true
 
-    TextLabel.Parent = BillboardGui
-    TextLabel.BackgroundTransparency = 1
-    TextLabel.Size = UDim2.new(1, 0, 1, 0)
-    TextLabel.Font = Enum.Font.SourceSansBold
-    TextLabel.TextSize = 14
-    TextLabel.TextColor3 = Color3.new(1, 1, 1)
-    TextLabel.TextStrokeTransparency = 0.5
-    TextLabel.TextYAlignment = Enum.TextYAlignment.Center
-    TextLabel.TextXAlignment = Enum.TextXAlignment.Center
+	TextLabel.Parent = BillboardGui
+	TextLabel.BackgroundTransparency = 1
+	TextLabel.Size = UDim2.new(1, 0, 1, 0)
+	TextLabel.Font = Enum.Font.SourceSansBold
+	TextLabel.TextSize = 14
+	TextLabel.TextColor3 = Color3.new(1, 1, 1)
+	TextLabel.TextStrokeTransparency = 0.5
+	TextLabel.TextYAlignment = Enum.TextYAlignment.Center
+	TextLabel.TextXAlignment = Enum.TextXAlignment.Center
 
-    -- body parts
-    local bodyParts = {
-        "Head", "Torso", "UpperTorso", "LowerTorso",
-        "LeftArm", "RightArm", "LeftLeg", "RightLeg",
-        "LeftUpperArm", "RightUpperArm", "LeftLowerArm", "RightLowerArm",
-        "LeftUpperLeg", "RightUpperLeg", "LeftLowerLeg", "RightLowerLeg"
-    }
+	-- body parts
+	local bodyParts = {
+		"Head", "Torso", "UpperTorso", "LowerTorso",
+		"LeftArm", "RightArm", "LeftLeg", "RightLeg",
+		"LeftUpperArm", "RightUpperArm", "LeftLowerArm", "RightLowerArm",
+		"LeftUpperLeg", "RightUpperLeg", "LeftLowerLeg", "RightLowerLeg"
+	}
 
-    local teamColor = getTeamColor(plyr)
+	local teamColor = getTeamColor(plyr)
 
-    -- create box for bodyparts
-    for _, partName in ipairs(bodyParts) do
-        local part = char:FindFirstChild(partName)
-        if part and part:IsA("BasePart") then
-            createBoundingBox(part, teamColor)
-        end
-    end
+	-- create box for bodyparts
+	for _, partName in ipairs(bodyParts) do
+		local part = char:FindFirstChild(partName)
+		if part and part:IsA("BasePart") then
+			createBoundingBox(part, teamColor)
+		end
+	end
 
-    -- update label text
-    local conn = RunService.RenderStepped:Connect(function()
-        local humanoid = char:FindFirstChildOfClass("Humanoid")
-        local root = getRoot(char)
-        local localRoot = getRoot(Players.LocalPlayer.Character)
+	-- update label text
+	local conn = RunService.RenderStepped:Connect(function()
+		local humanoid = char:FindFirstChildOfClass("Humanoid")
+		local root = getRoot(char)
+		local localRoot = getRoot(Players.LocalPlayer.Character)
 
-        if humanoid and root and localRoot then
-            local dist = math.floor((localRoot.Position - root.Position).Magnitude)
-            local health = round(humanoid.Health, 1)
-            TextLabel.Text = string.format("Name: %s | Health: %.1f | Dist: %d", plyr.Name, health, dist)
-        end
-    end)
+		if humanoid and root and localRoot then
+			local dist = math.floor((localRoot.Position - root.Position).Magnitude)
+			local health = round(humanoid.Health, 1)
+			TextLabel.Text = string.format("Name: %s | Health: %.1f | Dist: %d", plyr.Name, health, dist)
+		end
+	end)
 
-    table.insert(connections, conn)
+	table.insert(connections, conn)
 end
 
 -- attach esp logic
 local function attachESP(plyr)
-    plyr.CharacterAdded:Connect(function(char)
-        applyESPToCharacter(plyr, char)
-    end)
+	plyr.CharacterAdded:Connect(function(char)
+		applyESPToCharacter(plyr, char)
+	end)
 
-    if plyr.Character then
-        applyESPToCharacter(plyr, plyr.Character)
-    end
+	if plyr.Character then
+		applyESPToCharacter(plyr, plyr.Character)
+	end
 end
 
 function enableESP()
-    if ESPEnabled then return end
-    ESPEnabled = true
+	if ESPEnabled then return end
+	ESPEnabled = true
 
-    for _, plyr in pairs(Players:GetPlayers()) do
-        if plyr ~= Players.LocalPlayer then
-            attachESP(plyr)
-        end
-    end
+	for _, plyr in pairs(Players:GetPlayers()) do
+		if plyr ~= Players.LocalPlayer then
+			attachESP(plyr)
+		end
+	end
 
-    Players.PlayerAdded:Connect(function(plyr)
-        if plyr ~= Players.LocalPlayer then
-            attachESP(plyr)
-        end
-    end)
+	Players.PlayerAdded:Connect(function(plyr)
+		if plyr ~= Players.LocalPlayer then
+			attachESP(plyr)
+		end
+	end)
 end
 
 function disableESP()
-    ESPEnabled = false
-    ESPholder:ClearAllChildren()
+	ESPEnabled = false
+	ESPholder:ClearAllChildren()
 
-    for _, conn in pairs(connections) do
-        conn:Disconnect()
-    end
-    table.clear(connections)
+	for _, conn in pairs(connections) do
+		conn:Disconnect()
+	end
+	table.clear(connections)
 end
 
 -- safe esp
 local function safeesp()
-    for _, obj in ipairs(workspace.Safes:GetChildren()) do
-        if obj:IsA("Model") and obj.Name == "Safe" then
-            local goodPart = obj:FindFirstChild("Good")
-            if goodPart and goodPart:IsA("BasePart") and goodPart.Transparency == 0 then
-                -- Prevent duplicates
-                if not obj:FindFirstChild("safeESPhighlight") then
-                    -- Highlight
-                    local highlight = Instance.new("Highlight")
-                    highlight.Name = "safeESPhighlight"
-                    highlight.FillColor = Color3.fromRGB(152, 251, 152)
-                    highlight.OutlineColor = Color3.fromRGB(100, 200, 100)
-                    highlight.FillTransparency = 0.3
-                    highlight.OutlineTransparency = 0.1
-                    highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                    highlight.Adornee = obj
-                    highlight.Parent = obj
-                end
+	for _, obj in ipairs(workspace.Safes:GetChildren()) do
+		if obj:IsA("Model") and obj.Name == "Safe" then
+			local goodPart = obj:FindFirstChild("Good")
+			if goodPart and goodPart:IsA("BasePart") and goodPart.Transparency == 0 then
+				-- Prevent duplicates
+				if not obj:FindFirstChild("safeESPhighlight") then
+					-- Highlight
+					local highlight = Instance.new("Highlight")
+					highlight.Name = "safeESPhighlight"
+					highlight.FillColor = Color3.fromRGB(152, 251, 152)
+					highlight.OutlineColor = Color3.fromRGB(100, 200, 100)
+					highlight.FillTransparency = 0.3
+					highlight.OutlineTransparency = 0.1
+					highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+					highlight.Adornee = obj
+					highlight.Parent = obj
+				end
 
-                if not goodPart:FindFirstChild("SafeLabel") then
-                    -- BillboardGui
-                    local billboard = Instance.new("BillboardGui")
-                    billboard.Name = "SafeLabel"
-                    billboard.Size = UDim2.new(0, 200, 0, 50)
-                    billboard.StudsOffset = Vector3.new(0, 3, 0)
-                    billboard.AlwaysOnTop = true
-                    billboard.Parent = goodPart
+				if not goodPart:FindFirstChild("SafeLabel") then
+					-- BillboardGui
+					local billboard = Instance.new("BillboardGui")
+					billboard.Name = "SafeLabel"
+					billboard.Size = UDim2.new(0, 200, 0, 50)
+					billboard.StudsOffset = Vector3.new(0, 3, 0)
+					billboard.AlwaysOnTop = true
+					billboard.Parent = goodPart
 
-                    local label = Instance.new("TextLabel")
-                    label.Text = "SAFE"
-                    label.Font = Enum.Font.Ubuntu
-                    label.TextScaled = false
-                    label.TextSize = 14
-                    label.TextColor3 = Color3.new(1, 1, 1)
-                    label.BackgroundTransparency = 1
-                    label.Size = UDim2.new(1, 0, 1, 0)
-                    label.TextStrokeTransparency = 0
-                    label.TextStrokeColor3 = Color3.new(0, 0, 0)
-                    label.Parent = billboard
-                end
-            end
-        end
-    end
+					local label = Instance.new("TextLabel")
+					label.Text = "SAFE"
+					label.Font = Enum.Font.Ubuntu
+					label.TextScaled = false
+					label.TextSize = 14
+					label.TextColor3 = Color3.new(1, 1, 1)
+					label.BackgroundTransparency = 1
+					label.Size = UDim2.new(1, 0, 1, 0)
+					label.TextStrokeTransparency = 0
+					label.TextStrokeColor3 = Color3.new(0, 0, 0)
+					label.Parent = billboard
+				end
+			end
+		end
+	end
 end
 
 -------------------------------------------hideui
 
 local allFeatures = {
-    mainfeatures,
-    worldfeatures,
-    espfeatures,
-    vehiclefeatures,
-    playerfeatures,
-    miscfeatures,
+	mainfeatures,
+	worldfeatures,
+	espfeatures,
+	vehiclefeatures,
+	playerfeatures,
+	miscfeatures,
 }
 
 local function showOnly(targetFeature)
-    for _, feature in ipairs(allFeatures) do
-        feature.Visible = false
-    end
-    task.wait(0.02)
-    targetFeature.Visible = true
+	for _, feature in ipairs(allFeatures) do
+		feature.Visible = false
+	end
+	task.wait(0.02)
+	targetFeature.Visible = true
 end
 
 -- function hipheight
@@ -1106,18 +1104,18 @@ local plr = game.Players.LocalPlayer
 local tb = Hipheightextbox
 
 local function applyhh()
-    local char = plr.Character or plr.CharacterAdded:Wait()
-    local humanoid = char:FindFirstChildOfClass("Humanoid")
-    if not humanoid then return end
+	local char = plr.Character or plr.CharacterAdded:Wait()
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+	if not humanoid then return end
 
-    local input = tonumber(tb.Text)
-    if input then
-        humanoid.HipHeight = math.clamp(input, 0, 999)
-    else
-        tb.Text = "Invalid input"
-        wait(2)
-        tb.Text = ""
-    end
+	local input = tonumber(tb.Text)
+	if input then
+		humanoid.HipHeight = math.clamp(input, 0, 999)
+	else
+		tb.Text = "Invalid input"
+		wait(2)
+		tb.Text = ""
+	end
 end
 
 ------ func above
@@ -1125,22 +1123,22 @@ end
 
 --check vehicles
 local function checkVehiclesAndApplyActions(playerName, action, speedValue)
-    for _, vehicle in pairs(workspace.Vehicles:GetChildren()) do
-        local controlValues = vehicle:FindFirstChild("Control_Values")
-        if controlValues then
-            local owner = controlValues:FindFirstChild("Owner")
-            if owner and owner.Value == playerName then
-                if action == "NoCollide" then
-                    setCollisionOff(vehicle.Body)
-                    print("Collision turned off for vehicle owned by " .. playerName)
-                elseif action == "InfiniteFuel" then
-                    setInfiniteFuel(vehicle)
-                elseif action == "SetHealth" then
-                    setHealthValue(vehicle)
-                end
-            end
-        end
-    end
+	for _, vehicle in pairs(workspace.Vehicles:GetChildren()) do
+		local controlValues = vehicle:FindFirstChild("Control_Values")
+		if controlValues then
+			local owner = controlValues:FindFirstChild("Owner")
+			if owner and owner.Value == playerName then
+				if action == "NoCollide" then
+					setCollisionOff(vehicle.Body)
+					print("Collision turned off for vehicle owned by " .. playerName)
+				elseif action == "InfiniteFuel" then
+					setInfiniteFuel(vehicle)
+				elseif action == "SetHealth" then
+					setHealthValue(vehicle)
+				end
+			end
+		end
+	end
 end
 
 
@@ -1207,51 +1205,51 @@ nofogbutton.MouseButton1Click:Connect(function()
 end)
 
 playerespenablebutton.MouseButton1Click:Connect(function()
-    enableESP()
+	enableESP()
 end)
 playerespdisablebutton.MouseButton1Click:Connect(function()
 	disableESP()
 end)
 atmespbutton.MouseButton1Click:Connect(function()
-    atmmachineesp()
+	atmmachineesp()
 end)
 
 vehicleespbutton.MouseButton1Click:Connect(function()
-    bountycaresp()
+	bountycaresp()
 end)
 
 safeespbutton.MouseButton1Click:Connect(function()
-    safeesp()
+	safeesp()
 end)
 
 HipHeightButton.MouseButton1Click:Connect(function()
-    applyhh()
+	applyhh()
 end)
 ---- func buttons ^
 ---- menu buttons v
 
 mainmenu.MouseButton1Click:Connect(function()
-    showOnly(mainfeatures)
+	showOnly(mainfeatures)
 end)
 
 worldmenu.MouseButton1Click:Connect(function()
-    showOnly(worldfeatures)
+	showOnly(worldfeatures)
 end)
 
 espmenu.MouseButton1Click:Connect(function()
-    showOnly(espfeatures)
+	showOnly(espfeatures)
 end)
 
 vehiclemenu.MouseButton1Click:Connect(function()
-    showOnly(vehiclefeatures)
+	showOnly(vehiclefeatures)
 end)
 
 playermenu.MouseButton1Click:Connect(function()
-    showOnly(playerfeatures)
+	showOnly(playerfeatures)
 end)
 
 miscmenu.MouseButton1Click:Connect(function()
- showOnly(miscfeatures)
+	showOnly(miscfeatures)
 end)
 
 
@@ -1364,14 +1362,18 @@ local function applyColor()
 	ezLockPickButton.BackgroundColor3 = newColor
 	ezCrowbarButton.BackgroundColor3 = newColor
 	DisbaleDmgButton.BackgroundColor3 = newColor
-    nofogbutton.BackgroundColor3 = newColor
-    playerespenablebutton.BackgroundColor3 = newColor
-    playerespdisablebutton.BackgroundColor3 = newColor
-    atmespbutton.BackgroundColor3 = newColor
-    vehicleespbutton.BackgroundColor3 = newColor
-    safeespbutton.BackgroundColor3 = newColor
-    HipHeightButton.BackgroundColor3 = newColor
+	nofogbutton.BackgroundColor3 = newColor
+	playerespenablebutton.BackgroundColor3 = newColor
+	playerespdisablebutton.BackgroundColor3 = newColor
+	atmespbutton.BackgroundColor3 = newColor
+	vehicleespbutton.BackgroundColor3 = newColor
+	safeespbutton.BackgroundColor3 = newColor
+	HipHeightButton.BackgroundColor3 = newColor
 end
 
 applyColorButton.MouseButton1Click:Connect(applyColor)
 
+print("injection is successful ✅")
+warn("OBDeleven version 26w10a")
+
+warn("Changelogs are migrated to github")
