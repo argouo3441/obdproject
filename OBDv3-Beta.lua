@@ -46,10 +46,10 @@ local function styleElement(element, color, cornerOverride, applyTransparency, n
 end
 
 -- test dont touch ts below
---local coreGui = game:GetService("CoreGui")
---local robloxGui = coreGui.RobloxGui
+local coreGui = game:GetService("CoreGui")
+local robloxGui = coreGui.RobloxGui
 
-local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+-- local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
 
 local MainFrame = Instance.new("Frame", screenGui)
 MainFrame.Size = UDim2.new(0.6, 0, 0.6, 0)
