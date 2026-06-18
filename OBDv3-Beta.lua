@@ -45,14 +45,16 @@ local function styleElement(element, color, cornerOverride, applyTransparency, n
 
 end
 
--- DO NOT MODIFY THIS PART IF YOU DON'T KNOW WHAT YOU'RE DOING
+-- robloxgui injection ez detection bypass
 local coreGui = game:GetService("CoreGui")
 local robloxGui = coreGui.RobloxGui
 
---[[ DO NOT UNCOMMENT THIS OR YOU WILL GET BANNED FOR MAKING GUIS IN PLAYERGUI 
+--[[ DO NOT UNCOMMENT THIS OR YOU WILL GET BANNED FOR MAKING GUIS IN PLAYERGUI, THIS IS ONLY FOR TESTING IN STUDIO
 local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui) ]]
+local screenGui = Instance.new("ScreenGui", robloxGui)
+screenGui.Name = "aabfc322999332c8e4fc1a3a9a719643d60caef7670499cd290cb9c1c756aef9"
 
-local MainFrame = Instance.new("Frame", robloxGui)
+local MainFrame = Instance.new("Frame", screenGui)
 MainFrame.Size = UDim2.new(0.6, 0, 0.6, 0)
 MainFrame.Position = UDim2.new(0.2, 0, 0.2, 0)
 MainFrame.Active = true
