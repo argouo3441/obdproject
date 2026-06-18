@@ -1,2 +1,4 @@
 # obdproject
-erlc go brrrrrr
+## tldr; i made funny opensource script for erlc
+
+car speed coming soon
