@@ -1454,6 +1454,36 @@ plr.CharacterAdded:Connect(function(char)
 	end
 end)
 
+--cwalk
+local runsrv = game:GetService("RunService")
+local plr = game.Players.LocalPlayer
+
+local cwalkConnection = nil
+local cwalkActive = false
+local cwalkSpeed = 0 
+
+local function updateCFrameWalk()
+    if cwalkConnection then
+        cwalkConnection:Disconnect()
+        cwalkConnection = nil
+    end
+
+    if cwalkActive and cwalkSpeed > 0 then
+        cwalkConnection = runsrv.Stepped:Connect(function()
+            local character = plr.Character
+            if not character then return end
+            
+            local h = character:FindFirstChildWhichIsA("Humanoid")
+            if h and h.MoveDirection ~= Vector3.new(0, 0, 0) and character.PrimaryPart then
+                local amplification = Vector3.new(cwalkSpeed, cwalkSpeed, cwalkSpeed) * h.MoveDirection
+                character:MoveTo(character.PrimaryPart.Position + amplification)
+            end
+        end)
+    end
+end
+
+-- car speed
+
 --[[
 =======================================================================
                             ⇧ FUNCTIONS      ⇧
@@ -1550,6 +1580,16 @@ end, 5)
 
 setHipHeightSlider = CreateFunctionSlider("Hip Height", "set character hip height", 0, 1000, 5, "%.1f", function(value)
 	applyHipHeight(value)
+end)
+
+CreateFunctionSlider("CFrameWalk", "adjust cwalkspeed", 0, 50, 5, "%.1f", function(value)
+    cwalkSpeed = value
+    updateCFrameWalk()
+end)
+
+CreateFunctionToggle("CFrameWalk", "walkspeed but with cframe to avoid detection", 5, function(state)
+    cwalkActive = state
+    updateCFrameWalk()
 end)
 
 CreateFunctionButton("Easy Lockpick", "guaranteed lockpick", ezlockpick, 1)
