@@ -1584,12 +1584,12 @@ setHipHeightSlider = CreateFunctionSlider("Hip Height", "set character hip heigh
 	applyHipHeight(value)
 end)
 
-CreateFunctionSlider("CFrameWalk", "adjust cwalkspeed", 0, 50, 5, "%.1f", function(value)
+CreateFunctionSlider("CFrameWalk", "adjust cwalkspeed", 0, 10, 5, "%.2f", function(value)
     cwalkSpeed = value
     updateCFrameWalk()
 end)
 
-CreateFunctionToggle("CFrameWalk", "walkspeed but with cframe to avoid detection", 5, function(state)
+CreateFunctionToggle("CFrameWalk", "walkspeed amplifier (HIGH RISK MODULE, WILL FLAG YOU IF YOU GO TOO FAST", 5, function(state)
     cwalkActive = state
     updateCFrameWalk()
 end)
