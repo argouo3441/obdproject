@@ -1476,6 +1476,12 @@ local function updateCFrameWalk()
             if not character then return end
             
             local h = character:FindFirstChildWhichIsA("Humanoid")
+            
+            if h and h.Health <= 0.1 then 
+                return 
+            end
+            
+            -- Only amplify if moving and alive
             if h and h.MoveDirection ~= Vector3.new(0, 0, 0) and character.PrimaryPart then
                 local amplification = Vector3.new(cwalkSpeed, cwalkSpeed, cwalkSpeed) * h.MoveDirection
                 character:MoveTo(character.PrimaryPart.Position + amplification)
@@ -1483,8 +1489,7 @@ local function updateCFrameWalk()
         end)
     end
 end
-
--- car speed
+-- car speed (will add soon)
 
 --[[
 =======================================================================
