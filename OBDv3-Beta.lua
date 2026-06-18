@@ -1,4 +1,4 @@
--- Services (defined at top for global access)
+-- Services (defined at the top for global access)
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
@@ -45,13 +45,14 @@ local function styleElement(element, color, cornerOverride, applyTransparency, n
 
 end
 
--- test dont touch ts below
+-- DO NOT MODIFY THIS PART IF YOU DON'T KNOW WHAT YOU'RE DOING
 local coreGui = game:GetService("CoreGui")
 local robloxGui = coreGui.RobloxGui
 
--- local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+--[[ DO NOT UNCOMMENT THIS OR YOU WILL GET BANNED FOR MAKING GUIS IN PLAYERGUI 
+local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui) ]]
 
-local MainFrame = Instance.new("Frame", screenGui)
+local MainFrame = Instance.new("Frame", robloxGui)
 MainFrame.Size = UDim2.new(0.6, 0, 0.6, 0)
 MainFrame.Position = UDim2.new(0.2, 0, 0.2, 0)
 MainFrame.Active = true
