@@ -785,31 +785,37 @@ local function carflings()
 	end)
 
 	carflingCoroutine = coroutine.create(function()
+		local movel = 0.1
+		
 		repeat runsrv.Heartbeat:Wait()
 			local char = plr.Character
 			local root = char and char.PrimaryPart
 			humanoid = char and char:FindFirstChildWhichIsA("Humanoid")
-
+				
 			if not root or not humanoid then break end
+				
+			local forwardDirection = root.CFrame.LookVector
+			local upDirection = root.CFrame.UpVector
+			local flingvel = (forwardDirection * 5000) + (upDirection * 1000)
 
-			local vel, movel = root.Velocity, 0.1
-
-			root.Velocity = vel * 1000000 + Vector3.new(0, 1000000, 0)
+			root.AssemblyLinearVelocity = flingvel
 
 			runsrv.RenderStepped:Wait()
-			if char and char.Parent and root and root.Parent then
-				root.Velocity = vel
+				
+			if root and root.Parent then
+				root.AssemblyLinearVelocity = flingvel
 			end
 
 			runsrv.Stepped:Wait()
-			if char and char.Parent and root and root.Parent then
-				root.Velocity = vel + Vector3.new(0, movel, 0)
-				movel = movel * -1
+			
+			if root and root.Parent then
+				root.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
 			end
+			
 		until not carflingCoroutine or not humanoid.Sit
 
 		carflingCoroutine = nil
-		diedConnection:Disconnect()
+		if diedConnection then diedConnection:Disconnect() end
 	end)
 
 	coroutine.resume(carflingCoroutine)
@@ -1545,6 +1551,9 @@ CreateFunctionToggle("Player ESP", "shows players through walls", 3, function(st
 	if state then enableESP() else disableESP() end
 end)
 
+CreateFunctionSlider("Car Fling Value", "changes the intensity of the car fling", 0, 1000, 4, "%.1f", function(value)
+    flingvel = value
+end)
 CreateFunctionButton("Car Fling", "makes your car fling others (get out of car to stop)", carflings, 4)
 CreateFunctionButton("Vehicle No Collide", "disables collision on target vehicle", function() checkVehiclesAndApplyActions(getTargetPlayerName(), "NoCollide") end, 4)
 CreateFunctionToggle("Infinite Fuel", "unlimited vehicle fuel", 4, function(state)
