@@ -760,6 +760,8 @@ end
 -- car fly 🤣🤣🤣🤣🤣
 local carflingCoroutine = nil
 
+local flingvel = 1
+
 local function carflings()
 	local runsrv = game:GetService("RunService")
 	local Players = game.Players
@@ -786,32 +788,32 @@ local function carflings()
 
 	carflingCoroutine = coroutine.create(function()
 		local movel = 0.1
-		
+
 		repeat runsrv.Heartbeat:Wait()
 			local char = plr.Character
 			local root = char and char.PrimaryPart
 			humanoid = char and char:FindFirstChildWhichIsA("Humanoid")
-				
+
 			if not root or not humanoid then break end
-				
+
 			local forwardDirection = root.CFrame.LookVector
 			local upDirection = root.CFrame.UpVector
-			local flingvel = (forwardDirection * 5000) + (upDirection * 1000)
+			flingvel = (forwardDirection * 5000) + (upDirection * 1000)
 
 			root.AssemblyLinearVelocity = flingvel
 
 			runsrv.RenderStepped:Wait()
-				
+
 			if root and root.Parent then
 				root.AssemblyLinearVelocity = flingvel
 			end
 
 			runsrv.Stepped:Wait()
-			
+
 			if root and root.Parent then
 				root.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
 			end
-			
+
 		until not carflingCoroutine or not humanoid.Sit
 
 		carflingCoroutine = nil
@@ -1471,48 +1473,48 @@ local cwalkActive = false
 local cwalkSpeed = 0 
 
 local function updateCFrameWalk()
-    if cwalkConnection then
-        cwalkConnection:Disconnect()
-        cwalkConnection = nil
-    end
+	if cwalkConnection then
+		cwalkConnection:Disconnect()
+		cwalkConnection = nil
+	end
 
-    if cwalkActive and cwalkSpeed > 0 then
-        cwalkConnection = runsrv.Stepped:Connect(function()
-            local character = plr.Character
-            if not character then return end
-            
-            local h = character:FindFirstChildWhichIsA("Humanoid")
-            
-            if h and h.Health <= 0.1 then 
-                return 
-            end
-            
-            -- Only amplify if moving and alive
-            if h and h.MoveDirection ~= Vector3.new(0, 0, 0) and character.PrimaryPart then
-                local amplification = Vector3.new(cwalkSpeed, cwalkSpeed, cwalkSpeed) * h.MoveDirection
-                character:MoveTo(character.PrimaryPart.Position + amplification)
-            end
-        end)
-    end
+	if cwalkActive and cwalkSpeed > 0 then
+		cwalkConnection = runsrv.Stepped:Connect(function()
+			local character = plr.Character
+			if not character then return end
+
+			local h = character:FindFirstChildWhichIsA("Humanoid")
+
+			if h and h.Health <= 0.1 then 
+				return 
+			end
+
+			-- Only amplify if moving and alive
+			if h and h.MoveDirection ~= Vector3.new(0, 0, 0) and character.PrimaryPart then
+				local amplification = Vector3.new(cwalkSpeed, cwalkSpeed, cwalkSpeed) * h.MoveDirection
+				character:MoveTo(character.PrimaryPart.Position + amplification)
+			end
+		end)
+	end
 end
 -- wpressed logic
 local wpressed = false
 
-	local leinput = uis.InputBegan:Connect(function(inp, e)
-		if not e then
-			if inp.KeyCode == Enum.KeyCode.W or inp.KeyCode == Enum.KeyCode.S then
-				wpressed = true
-			end
+local leinput = UIS.InputBegan:Connect(function(inp, e)
+	if not e then
+		if inp.KeyCode == Enum.KeyCode.W or inp.KeyCode == Enum.KeyCode.S then
+			wpressed = true
 		end
-	end)
- 
-	local leinput = uis.InputEnded:Connect(function(inp, e)
-		if not e then
-			if inp.KeyCode == Enum.KeyCode.W or inp.KeyCode == Enum.KeyCode.S then
-				wpressed = false
-			end
+	end
+end)
+
+local leinput = UIS.InputEnded:Connect(function(inp, e)
+	if not e then
+		if inp.KeyCode == Enum.KeyCode.W or inp.KeyCode == Enum.KeyCode.S then
+			wpressed = false
 		end
-	end)
+	end
+end)
 
 -- car speed
 local loopAAA = nil
@@ -1526,7 +1528,7 @@ local function carspeed(amount)
 	local char = plr.Character
 	local hum = char and char:FindFirstChildWhichIsA("Humanoid")
 	local root = char and char.PrimaryPart
-	
+
 	if not root or not hum then return end
 
 	if not loopAAA then
@@ -1536,7 +1538,7 @@ local function carspeed(amount)
 				return 
 			end
 
-			if wpressed = true then
+			if wpressed then
 				local moveVelocity = hum.MoveDirection * Vector3.new(1, 0, 1) * carampl
 				root.AssemblyLinearVelocity = Vector3.new(moveVelocity.X, root.AssemblyLinearVelocity.Y, moveVelocity.Z)
 			end
@@ -1602,13 +1604,13 @@ CreateFunctionToggle("Player ESP", "shows players through walls", 3, function(st
 end)
 
 CreateFunctionSlider("Car Fling Value", "changes the intensity of the car fling", 0, 1000, 4, "%.1f", function(value)
-    flingvel = value
+	flingvel = value
 end)
 CreateFunctionButton("Car Fling", "makes your car fling others (get out of car to stop)", carflings, 4)
 CreateFunctionSlider("Car Speed Value", "changes your acceleration amplification", 0, 500, 4, "%.1f", function(value)
-    carampl = value
+	carampl = value
 end)
-CreateFunctionToggle("Car Speed", "makes your car fling others (get out of car to stop)", 4 function(state)
+CreateFunctionToggle("Car Speed", "toggles car speed", 4, function(state)
 	carspeed(state)
 end)
 
@@ -1656,13 +1658,13 @@ setHipHeightSlider = CreateFunctionSlider("Hip Height", "set character hip heigh
 end)
 
 CreateFunctionSlider("CFrameWalk", "adjust cwalkspeed", 0, 10, 5, "%.2f", function(value)
-    cwalkSpeed = value
-    updateCFrameWalk()
+	cwalkSpeed = value
+	updateCFrameWalk()
 end)
 
 CreateFunctionToggle("CFrameWalk", "walkspeed amplifier (HIGH RISK MODULE, WILL FLAG YOU IF YOU GO TOO FAST", 5, function(state)
-    cwalkActive = state
-    updateCFrameWalk()
+	cwalkActive = state
+	updateCFrameWalk()
 end)
 
 CreateFunctionButton("Easy Lockpick", "guaranteed lockpick", ezlockpick, 1)
