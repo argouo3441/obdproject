@@ -1495,7 +1495,57 @@ local function updateCFrameWalk()
         end)
     end
 end
--- car speed (will add soon)
+-- wpressed logic
+local wpressed = false
+
+	local leinput = uis.InputBegan:Connect(function(inp, e)
+		if not e then
+			if inp.KeyCode == Enum.KeyCode.W or inp.KeyCode == Enum.KeyCode.S then
+				wpressed = true
+			end
+		end
+	end)
+ 
+	local leinput = uis.InputEnded:Connect(function(inp, e)
+		if not e then
+			if inp.KeyCode == Enum.KeyCode.W or inp.KeyCode == Enum.KeyCode.S then
+				wpressed = false
+			end
+		end
+	end)
+
+-- car speed
+local loopAAA = nil
+local carampl = 0
+
+local function carspeed(amount)
+	if amount and tonumber(amount) then
+		carampl = tonumber(amount)
+	end
+
+	local char = plr.Character
+	local hum = char and char:FindFirstChildWhichIsA("Humanoid")
+	local root = char and char.PrimaryPart
+	
+	if not root or not hum then return end
+
+	if not loopAAA then
+		loopAAA = runsrv.Heartbeat:Connect(function()
+			if not root or not root.Parent or not hum or hum.Health <= 0 then 
+				if loopAAA then loopAAA:Disconnect() loopAAA = nil end
+				return 
+			end
+
+			if wpressed = true then
+				local moveVelocity = hum.MoveDirection * Vector3.new(1, 0, 1) * carampl
+				root.AssemblyLinearVelocity = Vector3.new(moveVelocity.X, root.AssemblyLinearVelocity.Y, moveVelocity.Z)
+			end
+		end)
+	else
+		loopAAA:Disconnect()
+		loopAAA = nil
+	end
+end
 
 --[[
 =======================================================================
@@ -1555,6 +1605,13 @@ CreateFunctionSlider("Car Fling Value", "changes the intensity of the car fling"
     flingvel = value
 end)
 CreateFunctionButton("Car Fling", "makes your car fling others (get out of car to stop)", carflings, 4)
+CreateFunctionSlider("Car Speed Value", "changes your acceleration amplification", 0, 500, 4, "%.1f", function(value)
+    carampl = value
+end)
+CreateFunctionToggle("Car Speed", "makes your car fling others (get out of car to stop)", 4 function(state)
+	carspeed(state)
+end)
+
 CreateFunctionButton("Vehicle No Collide", "disables collision on target vehicle", function() checkVehiclesAndApplyActions(getTargetPlayerName(), "NoCollide") end, 4)
 CreateFunctionToggle("Infinite Fuel", "unlimited vehicle fuel", 4, function(state)
 	for _, vehicle in pairs(workspace.Vehicles:GetChildren()) do
